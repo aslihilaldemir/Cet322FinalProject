@@ -1,0 +1,41 @@
+@model Cet322FinalProject.Models.Gallery
+
+@{
+    ViewData["Title"] = "ManageImage";
+}
+
+<h1>Manage Image</h1>
+
+<div>
+    <h4>Gallery</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+    <ul>
+
+
+        @foreach (var image in Model.GalleryImages)
+        {
+            <li>
+                @image.FileName
+                <img src="~/UserImages/@image.FileName" />
+            </li>
+        }
+    </ul>
+    <form asp-action="UploadImage" enctype="multipart/form-data">
+        <input type="hidden" name="GalleryId" id="GalleryId" value="@Model.Id" />
+        <input type="file" name="ImageFile" id="ImageFile" />
+        <input type="submit" value="Upload" />
+    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

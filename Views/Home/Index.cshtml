@@ -1,0 +1,88 @@
+﻿@model Cet322FinalProject.ViewModel.HomePageViewModel
+
+<html class="js sizes customelements history pointerevents postmessage webgl websockets cssanimations csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox picture srcset webworkers" lang="zxx">
+
+<body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+    <!-- welcome_protomedia_start -->
+    <div class="welcome_protomedia">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6">
+                    <h3>
+                        Welcome
+                    </h3>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="add_here">
+                        <a href="#">
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- welcome_protomedia_end -->
+    <!-- articles_blog_start -->
+    <div class="most_recent_blog">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xl-12 col-md-12">
+                    <div class="row">
+
+                        <partial name="_PostPartial" model="@Model.Posts" />
+
+
+                    </div>
+
+                </div>
+                <div class="col-xl-12">
+                    <div class="btn_area text-center">
+                        <a href="#" class="boxed-btn">Load More</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- most_recent_blog_end -->
+    <!-- subscribe_newsletter_start -->
+    <div class="subscribe_newsletter">
+        <div class="container">
+            <div class="black_bg">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="newsletter_text">
+                            <h3>
+                                Subscribe newsletter
+                            </h3>
+                            <p>Get updates to our newsletter and new articles</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="newsform">
+                            <form action="#">
+                                <input type="email" placeholder="Enter Your Email">
+                                <button type="submit">sign up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- subscribe_newsletter_end -->
+
+
+
+</body>
+
+
+</html>

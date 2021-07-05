@@ -1,0 +1,99 @@
+@model Cet322FinalProject.ViewModel.SearchViewModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<div style="padding-left:250px ; padding-top:50px">
+    <h1>Arama Sonucu</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Search">
+                <div class="form-group">
+                    <label asp-for="SearchText" class="control-label"></label>
+                    <input asp-for="SearchText" class="form-control" />
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="SearchInDescription" /> @Html.DisplayNameFor(model => model.SearchInDescription)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                        <option value=""> Tüm Kategoriler </option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Ara" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@if (Model?.Results != null)
+{
+
+
+    <body style="overflow: visible;">
+        <main>
+            <div class="categories-area" style="padding-top:40px">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Section Tittle -->
+                            <h3> Arama Sonuçları</h3>
+                            <h5> @Model.Results.Count Adet post bulundu. </h5>
+                            <div class="section-tittle text-center mb-80">
+                                <div class="comment-count"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        @foreach (var item in Model.Results)
+                        {
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="single-cat text-center mb-50">
+                                    <div class="cat-icon">
+
+                                        <span>
+                                            @{
+                                                var imageUrl = item.PostImages?.FirstOrDefault()?.FileName ?? "noimage.jpg";
+                                            }
+                                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                                <a class="btn-outline-dark" asp-controller="Posts" asp-action="Details" asp-route-id="@item.Id">
+                                                    <img src="~/PostImages/@imageUrl" alt="" width="330" height="220">
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="cat-cap">
+                                        <h6>@Html.DisplayFor(modelItem => item.Category.Name)</h6>
+                                        <h6>@Html.DisplayFor(modelItem => item.CreatedDate)</h6>
+                                        <h4>@Html.DisplayFor(modelItem => item.Title) </h4>
+                                        <h6>@Html.DisplayFor(modelItem => item.Description)</h6>
+                                        <p><a class="btn-outline-dark" asp-controller="Posts" asp-action="Details" asp-route-id="@item.Id">Details</a></p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                         }
+
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+
+ }

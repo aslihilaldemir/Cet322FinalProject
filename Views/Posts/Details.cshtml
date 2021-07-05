@@ -1,0 +1,129 @@
+@model Cet322FinalProject.Models.Post
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+
+
+<section class="blog_area single-post-area section-padding">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div>
+                        <h1>@Model.Title</h1>
+                    </div>
+
+                    <div class="feature-img">
+
+                        <span>
+                            @{
+                                var imageUrl = @Model.PostImages?.FirstOrDefault()?.FileName ?? "noimage.jpg";
+                            }
+                            <div class="img-fluid"><img src="~/PostImages/@imageUrl" alt=" "></div>
+                        </span>
+
+                    </div>
+                    <div class="blog_details">
+                        <h2>
+                            @Model.Description
+                        </h2>
+                        <ul class="blog-info-link mt-3 mb-4">
+                            <li><a href="#"><i class="fa"></i> @Model.Category.Name</a></li>
+                            <li><a href="#"><i class="fa"></i> @Model.CreatedDate</a></li>
+
+                        </ul>
+                        <p class="excert">
+                            @Model.Content
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <a asp-action="Index">Back to List</a>
+
+                    </div>
+                </div>
+
+                <div class="comments-area">
+                    <h2>Comments</h2>
+                    <h4>@Model.Comments.Count Comments</h4>
+                    @foreach (var item in Model.Comments)
+                    {
+
+                        <div class="comment-list">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img alt="" src="~/img/anon.jpg">
+                                    </div>
+                                    <div class="desc">
+                                        <h5>@item.Title</h5>
+                                        <p class="comment">
+                                            @item.Detail
+                                        </p>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <h5>
+                                                    Rating @item.Rating
+                                                </h5>
+                                                <p class="date">@item.CreatedDate</p>
+                                            </div>
+                                            <div class="reply-btn">
+                                                <a class="btn-reply text-uppercase" asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            </div>
+
+                                            <div class="reply-btn">
+                                                <a class="btn-reply text-uppercase" asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="comment-form">
+                        <h3>Leave a Comment</h3>
+                        <form class="form-contact comment_form" id="commentForm" asp-controller="Comments" asp-action="Create">
+                            <input type="hidden" value="@Model.Id" name="PostId" />
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input name="Title" class="form-control" id="name" type="text" placeholder="Title">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea name="Detail" class="form-control w-100" id="comment" placeholder="Write Comment" rows="9" cols="30"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <p>Rating</p>
+                                        <input name="Rating" class="form-control" id="email" type="number" placeholder="Rating">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <button class="button button-contactForm btn_1 boxed-btn" type="submit">Comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
